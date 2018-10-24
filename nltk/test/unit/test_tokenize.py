@@ -169,3 +169,19 @@ class TestTokenize(unittest.TestCase):
         ]
         result = list(tokenizer.span_tokenize(test3))
         self.assertEqual(result, expected)
+
+        test4 = ' ( see 6)  Biotin " " affinity'
+        expected = [
+            (1, 2), (3, 6), (7, 8), (8, 9), (11, 17), (18, 19), (20, 21), (22, 30)
+        ]
+        result = list(tokenizer.span_tokenize(test4))
+        self.assertEqual(result, expected)
+
+        test5 = "''Elton's been through a lot,\" he told The Sun newspaper."
+        expected = [
+            (0, 2), (2, 7), (7, 9), (10, 14), (15, 22), (23, 24),
+            (25, 28), (28, 29), (29, 30), (31, 33), (34, 38),
+            (39, 42), (43, 46), (47, 56), (56, 57)
+        ]
+        result = list(tokenizer.span_tokenize(test5))
+        self.assertEqual(result, expected)
